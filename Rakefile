@@ -51,7 +51,7 @@ end
 
 test_pattern = case
                when RUBY_PLATFORM =~ /java/ then 'spec/{,jruby/}*_spec.rb'
-               when RUBY_ENGINE =~ /rbx/ then 'spec/*_spec.rb'
+               when defined?(RUBY_ENGINE) && RUBY_ENGINE =~ /rbx/ then 'spec/*_spec.rb'
                else 'spec/{,cruby/}*_spec.rb' # MRI
                end
 RSpec::Core::RakeTask.new(:spec) do |t|
